@@ -200,4 +200,29 @@ const activeObserver = new IntersectionObserver(
 
 sections.forEach(s => activeObserver.observe(s));
 
+// ============================================================
+// COPY EMAIL TO CLIPBOARD
+// ============================================================
+function copyEmail() {
+  const email = 'jonathanpizzurro@gmail.com';
+  navigator.clipboard.writeText(email).then(() => {
+    const btn  = document.getElementById('copyEmailBtn');
+    const text = document.getElementById('copyEmailText');
+    const icon = document.getElementById('copyIcon');
+
+    // Swap icon to checkmark
+    icon.innerHTML = '<polyline points="20 6 9 17 4 12"/>';
+    text.textContent = '¡Copiado!';
+    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+    btn.style.boxShadow  = '0 8px 30px rgba(16,185,129,0.4)';
+
+    setTimeout(() => {
+      icon.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>';
+      text.textContent = email;
+      btn.style.background = '';
+      btn.style.boxShadow  = '';
+    }, 2000);
+  });
+}
+
 console.log('Jonathan Pizzurro Portfolio — Loaded ✅');
