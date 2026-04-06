@@ -1003,6 +1003,89 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .modal ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent-cyan); }
 .modal .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 
+/* Projects CTA button */
+.projects-cta { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 32px; }
+.projects-open-btn { display: inline-flex; align-items: center; gap: 12px; }
+.projects-cta-hint { color: var(--text-muted); font-size: 0.85rem; letter-spacing: 0.04em; }
+
+/* Projects list inside modal */
+.modal { max-width: 760px; }
+.projects-list { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 8px; }
+.project-list-card {
+  display: flex; align-items: center; gap: 18px;
+  text-align: left; width: 100%;
+  padding: 18px; border-radius: 14px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: inherit; cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+.project-list-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0,212,255,0.35);
+  background: rgba(0,212,255,0.05);
+}
+.project-list-icon {
+  width: 52px; height: 52px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; border-radius: 12px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.2);
+}
+.project-list-body { flex: 1; min-width: 0; }
+.project-list-platform { display: block; font-size: 0.72rem; color: var(--accent-cyan); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.project-list-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin: 0 0 4px; color: var(--text-primary); }
+.project-list-desc { font-size: 0.85rem; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+.project-list-arrow { color: var(--accent-cyan); font-size: 1.3rem; flex-shrink: 0; }
+
+/* Back button in detail modal */
+.modal-back {
+  background: none; border: none; color: var(--accent-cyan);
+  font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  padding: 4px 0; margin-bottom: 14px;
+  transition: opacity var(--transition);
+}
+.modal-back:hover { opacity: 0.75; }
+
+/* Modal gallery */
+.modal-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 14px; }
+.modal-gallery-item {
+  aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.12);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; color: var(--text-muted); font-size: 0.7rem; text-align: center; padding: 6px;
+  cursor: zoom-in; transition: transform 0.2s ease;
+}
+.modal-gallery-item:hover { transform: scale(1.02); }
+.modal-gallery-item.empty span { font-size: 1.4rem; opacity: 0.6; }
+.modal-gallery-item img { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
+
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.92);
+  display: none; align-items: center; justify-content: center;
+  z-index: 10000; padding: 24px; cursor: zoom-out;
+}
+.lightbox-overlay.open { display: flex; }
+.lightbox-overlay img {
+  max-width: 95vw; max-height: 92vh; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.lightbox-close {
+  position: absolute; top: 18px; right: 22px;
+  background: rgba(255,255,255,0.1); border: none; color: #fff;
+  font-size: 1.6rem; width: 42px; height: 42px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+@media (max-width: 560px) {
+  .modal-gallery { grid-template-columns: 1fr; }
+  .project-list-card { padding: 14px; gap: 12px; }
+  .project-list-icon { width: 44px; height: 44px; font-size: 1.3rem; }
+}
+
 /* ============================================================
    BACKGROUND VISUAL SYSTEM
    ============================================================ */

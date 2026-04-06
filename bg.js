@@ -229,37 +229,32 @@
 })();
 
 
-// ---- 3. HERO CURSOR GLOW (mouse follow) ----
+// ---- 3. CURSOR GLOW (follows mouse in real time across the whole page) ----
 (function initCursorGlow() {
-  const hero = document.getElementById('hero');
-  if (!hero) return;
-
   const glow = document.createElement('div');
   glow.id = 'cursor-glow';
   glow.style.cssText = `
-    position: absolute;
-    width: 500px;
-    height: 500px;
+    position: fixed;
+    width: 420px;
+    height: 420px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0,212,255,0.07) 0%, transparent 70%);
     pointer-events: none;
     transform: translate(-50%, -50%);
-    transition: left 0.4s ease, top 0.4s ease;
     z-index: 0;
     opacity: 0;
-    transition: left 0.3s ease, top 0.3s ease, opacity 0.5s ease;
+    transition: opacity 0.3s ease;
+    will-change: left, top;
   `;
-  hero.style.position = 'relative';
-  hero.appendChild(glow);
+  document.body.appendChild(glow);
 
-  hero.addEventListener('mousemove', e => {
-    const rect = hero.getBoundingClientRect();
-    glow.style.left    = (e.clientX - rect.left)  + 'px';
-    glow.style.top     = (e.clientY - rect.top)   + 'px';
+  document.addEventListener('mousemove', e => {
+    glow.style.left    = e.clientX + 'px';
+    glow.style.top     = e.clientY + 'px';
     glow.style.opacity = '1';
   });
 
-  hero.addEventListener('mouseleave', () => {
+  document.addEventListener('mouseleave', () => {
     glow.style.opacity = '0';
   });
 })();

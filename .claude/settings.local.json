@@ -4,7 +4,11 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:50095)",
       "Bash(curl -s -o /dev/null -w \" | CV: %{http_code}\" \"http://localhost:50095/assets/cv-jonathan-pizzurro.pdf\")",
       "Bash(open index.html)",
-      "Bash(open /Users/totan/Desktop/Portafolio/index.html)"
+      "Bash(open /Users/totan/Desktop/Portafolio/index.html)",
+      "Bash(python3 -m http.server 8000)",
+      "Bash(gh repo:*)",
+      "Bash(gh api:*)",
+      "Bash(python3 -c \"import json,sys;print\\('\\\\n'.join\\(x['name'] for x in json.load\\(sys.stdin\\)\\)\\)\")"
     ]
   }
 }
