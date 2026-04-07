@@ -8,7 +8,14 @@
       "Bash(python3 -m http.server 8000)",
       "Bash(gh repo:*)",
       "Bash(gh api:*)",
-      "Bash(python3 -c \"import json,sys;print\\('\\\\n'.join\\(x['name'] for x in json.load\\(sys.stdin\\)\\)\\)\")"
+      "Bash(python3 -c \"import json,sys;print\\('\\\\n'.join\\(x['name'] for x in json.load\\(sys.stdin\\)\\)\\)\")",
+      "Bash(mv \"Spanish CV.pdf\" cv-jonathan-pizzurro-es.pdf)",
+      "Bash(mv \"English CV.pdf\" cv-jonathan-pizzurro-en.pdf)",
+      "Bash(rm cv-jonathan-pizzurro.pdf)",
+      "Bash(python3 -m http.server 8080)",
+      "Bash(rm -f cv-jonathan-pizzurro-es.pdf cv-jonathan-pizzurro-en.pdf)",
+      "Bash(mv cv-jonathan-pizzurro-es.pdf \"Spanish CV.pdf\")",
+      "Bash(mv cv-jonathan-pizzurro-en.pdf \"English CV.pdf\")"
     ]
   }
 }

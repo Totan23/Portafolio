@@ -270,6 +270,25 @@ modalOverlay.addEventListener('click', (e) => {
 });
 
 // ============================================================
+// CV LANGUAGE MODAL
+// ============================================================
+const cvModalOverlay = document.getElementById('cvModalOverlay');
+const cvModalClose   = document.getElementById('cvModalClose');
+
+function openCvModal() {
+  cvModalOverlay.classList.add('open');
+  cvModalOverlay.setAttribute('aria-hidden', 'false');
+}
+function closeCvModal() {
+  cvModalOverlay.classList.remove('open');
+  cvModalOverlay.setAttribute('aria-hidden', 'true');
+}
+cvModalClose.addEventListener('click', closeCvModal);
+cvModalOverlay.addEventListener('click', (e) => {
+  if (e.target === cvModalOverlay) closeCvModal();
+});
+
+// ============================================================
 // LIGHTBOX: image preview
 // ============================================================
 const lightboxOverlay = document.getElementById('lightboxOverlay');
@@ -296,6 +315,7 @@ lightboxClose.addEventListener('click', closeLightbox);
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
   if (lightboxOverlay.classList.contains('open')) closeLightbox();
+  else if (cvModalOverlay.classList.contains('open')) closeCvModal();
   else closeModal();
 });
 

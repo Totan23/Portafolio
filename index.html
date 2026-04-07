@@ -27,7 +27,7 @@
           <a href="#timeline">Experiencia</a>
           <a href="#contact">Contacto</a>
         </nav>
-        <a href="assets/cv-jonathan-pizzurro.pdf" class="btn btn-outline" target="_blank" download>Descargar CV</a>
+        <button class="btn btn-outline" onclick="openCvModal()">Descargar CV</button>
         <button class="hamburger" id="hamburger" aria-label="Menú">
           <span></span><span></span><span></span>
         </button>
@@ -433,6 +433,19 @@
         <p class="footer-sub">Construido con HTML, CSS y JavaScript</p>
       </div>
     </footer>
+
+    <!-- ===== CV LANGUAGE MODAL ===== -->
+    <div class="cv-modal-overlay" id="cvModalOverlay" aria-hidden="true">
+      <div class="cv-modal glass-card" role="dialog" aria-modal="true">
+        <button class="cv-modal-close" id="cvModalClose" aria-label="Cerrar">✕</button>
+        <h3>Descargar CV</h3>
+        <p>Selecciona el idioma</p>
+        <div class="cv-modal-actions">
+          <a href="assets/Spanish CV.pdf" download class="btn btn-primary" onclick="closeCvModal()">Español</a>
+          <a href="assets/English CV.pdf" download class="btn btn-primary" onclick="closeCvModal()">English</a>
+        </div>
+      </div>
+    </div>
 
     <!-- ===== LIGHTBOX ===== -->
     <div class="lightbox-overlay" id="lightboxOverlay" aria-hidden="true">
