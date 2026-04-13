@@ -1172,15 +1172,15 @@ body::after {
     align-items: center;
     justify-content: center;
     gap: 36px;
-    background: rgba(8, 8, 16, 0.97);
+    background: rgba(8, 8, 16, 1);
     backdrop-filter: blur(20px);
-    z-index: 99;
+    z-index: 9998;
   }
 
   .nav-links.open { display: flex; }
   .nav-links a    { font-size: 1.3rem; }
 
-  .hamburger { display: flex; }
+  .hamburger { display: flex; z-index: 9999; position: relative; }
   .navbar .btn-outline { display: none; }
 
   .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
@@ -1193,7 +1193,8 @@ body::after {
 
   .footer-content { flex-direction: column; text-align: center; }
 
-  .contact-wrapper { padding: 48px 24px; }
+  .contact-wrapper { padding: 48px 20px; }
+  .contact-wrapper .btn-lg { white-space: normal; word-break: break-all; padding: 14px 20px; font-size: 0.85rem; max-width: 100%; }
 
   .about-stats { gap: 20px; }
   .social-links { flex-direction: column; align-items: center; }
