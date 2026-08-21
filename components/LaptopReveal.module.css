@@ -1,0 +1,265 @@
+/* =============================================================
+   LaptopReveal — CSS module
+   Solo lo que Tailwind no puede hacer cómodamente: perspective,
+   3D transforms, gradientes complejos del chasis/teclado, sombras
+   en capas. El resto (layout del hero, copy, colores generales)
+   vive en Tailwind.
+   ============================================================= */
+
+.heroBg {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(25, 38, 50, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #EDE8DC 0%, #E2DDD0 55%, #D7D1C2 100%);
+}
+
+.eyebrow {
+  font-family: 'Courier New', Courier, monospace;
+  color: #192632;
+}
+
+.perspectiveStage {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  padding: 0 24px;
+  perspective: 2000px;
+  perspective-origin: 50% 38%;
+}
+
+/* === LAPTOP CONTAINER === */
+.laptop {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11.5;
+  transform-style: preserve-3d;
+  /* rotateX y scale los maneja GSAP (initial: rotateX(8) scale(1)) */
+}
+
+/* === LID (la tapa que rota desde el hinge) === */
+.laptopLid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 91.5%;
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  border-radius: 14px 14px 4px 4px;
+}
+
+.lidCover,
+.lidScreen {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px 14px 4px 4px;
+  overflow: hidden;
+}
+
+/* Cara exterior (visible cuando está cerrada). */
+.lidCover {
+  z-index: 5;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.06) 0%, transparent 65%),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.04) 25%,
+      transparent 45%,
+      transparent 60%,
+      rgba(255, 255, 255, 0.03) 100%
+    ),
+    linear-gradient(180deg, #3a3a3e 0%, #2c2c30 50%, #1f1f23 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Línea CNC sutil — detalle típico de notebooks premium */
+.lidLine {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+/* Marca minimalista: punto oxide-orange (no logo Apple, branding propio) */
+.lidBrand {
+  width: 12%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 32%, #F6A757 0%, #AF4C32 65%, #7a2f1a 100%);
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28);
+}
+
+/* Cara interior (pantalla — visible cuando se abre) */
+.lidScreen {
+  z-index: 1;
+  background: #050505;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 5px 5px;
+  box-shadow:
+    inset 0 0 0 1px #000,
+    inset 0 0 0 2px rgba(255, 255, 255, 0.04);
+}
+
+.notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20%;
+  height: 14px;
+  background: #000;
+  border-radius: 0 0 10px 10px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notchCam {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2a3050 0%, #0a0a0a 70%);
+}
+
+.screenGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    rgba(180, 200, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.22) 30%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 4;
+  mix-blend-mode: screen;
+}
+
+.screenContent {
+  position: relative;
+  flex: 1;
+  z-index: 2;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #0A0E14;
+}
+
+/* === BASE (chassis + teclado + trackpad) === */
+.laptopBase {
+  position: absolute;
+  bottom: 0;
+  left: -1.5%;
+  right: -1.5%;
+  height: 8.5%;
+  background:
+    linear-gradient(180deg, #d6d6dc 0%, #a4a4ac 22%, #75757d 70%, #5d5d65 100%);
+  border-radius: 4px 4px 14px 14px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 8px 16px rgba(0, 0, 0, 0.16);
+}
+
+/* Línea del hinge entre lid y base */
+.hinge {
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(180deg, #0a0a0a 0%, #2a2a2e 100%);
+  border-radius: 0 0 2px 2px;
+}
+
+.keyboard {
+  position: absolute;
+  top: 16%;
+  left: 8%;
+  right: 8%;
+  height: 38%;
+  background:
+    /* "teclas": rejilla vertical */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 2px,
+      rgba(0, 0, 0, 0.5) 2px,
+      rgba(0, 0, 0, 0.5) 3px,
+      transparent 3px,
+      transparent 14px
+    ),
+    /* "rows": rejilla horizontal */
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 2px,
+      rgba(0, 0, 0, 0.3) 2px,
+      rgba(0, 0, 0, 0.3) 3px
+    ),
+    linear-gradient(180deg, #2a2a2e 0%, #1a1a1e 100%);
+  border-radius: 2px;
+  opacity: 0.9;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.trackpad {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32%;
+  height: 28%;
+  background: linear-gradient(180deg, #6a6a72 0%, #4a4a52 100%);
+  border-radius: 3px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* === SHADOW — sombra ambient debajo de la laptop === */
+.laptopShadow {
+  position: absolute;
+  bottom: 2%;
+  left: 6%;
+  right: 6%;
+  height: 7%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(25, 38, 50, 0.65) 0%,
+    rgba(25, 38, 50, 0.2) 45%,
+    transparent 75%
+  );
+  filter: blur(22px);
+  z-index: -1;
+  pointer-events: none;
+  transform-origin: center top;
+}
+
+/* === MOBILE: laptop plana, sin tilt 3D === */
+@media (max-width: 768px) {
+  .perspectiveStage {
+    perspective: 1400px;
+    padding: 0 16px;
+  }
+  .laptop {
+    aspect-ratio: 16 / 11;
+  }
+  .lidBrand {
+    width: 10%;
+  }
+}
