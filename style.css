@@ -251,6 +251,37 @@ em { font-style: normal; font-weight: 500; color: var(--text); }
   font-weight: 400;
 }
 
+.about-langs {
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  max-width: 560px;
+}
+.about-langs-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.about-langs-line {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(20px, 2.4vw, 26px);
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.about-langs-line .al-sep { color: var(--muted); margin: 0 6px; font-weight: 400; }
+.about-langs-note {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 460px;
+}
+
 @media (max-width: 800px) {
   .about-grid { grid-template-columns: 1fr; gap: 50px; }
 }
@@ -969,7 +1000,7 @@ em { font-style: normal; font-weight: 500; color: var(--text); }
 .mac-lid {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 91%;
+  height: 88%;
   transform-origin: 50% 100%;   /* bisagra en el borde inferior */
   transform-style: preserve-3d;
   border-radius: 12px 12px 4px 4px;
@@ -1094,86 +1125,53 @@ em { font-style: normal; font-weight: 500; color: var(--text); }
 .mac-deck {
   position: absolute;
   bottom: 0;
-  left: -1%;
-  right: -1%;
-  height: 11%;
+  left: -3%;
+  right: -3%;
+  height: 12%;
+  border-radius: 3px 3px 13px 13px;
   background:
-    /* edge highlight superior (donde apoya la bisagra) */
-    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, transparent 4%),
-    /* front edge en wedge */
-    linear-gradient(180deg, transparent 90%, rgba(0, 0, 0, 0.5) 100%),
-    /* aluminio del chasis */
-    linear-gradient(180deg, #2c2c30 0%, #1f1f23 55%, #14141a 100%);
-  border-radius: 3px 3px 14px 14px;
+    /* labio brillante de la bisagra (separa base y pantalla) */
+    linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.1) 5%, transparent 15%),
+    /* superficie de aluminio: canto claro arriba, frente medio (wedge) — más claro
+       que el fondo para que la base se distinga y lea como MacBook, no monitor */
+    linear-gradient(180deg, #56565f 0%, #43434b 32%, #333339 72%, #26262c 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.45),
-    0 6px 12px rgba(0, 0, 0, 0.2);
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.14),
+    0 18px 34px -10px rgba(0, 0, 0, 0.75);
 }
-
-/* Speakers (rejilla de agujeros) a izquierda y derecha del teclado */
-.mac-speakers {
+/* Ranura frontal semicircular — el hueco donde se levanta la tapa */
+.mac-deck::before {
+  content: "";
   position: absolute;
-  top: 18%;
-  width: 14%;
-  height: 60%;
-  background-image: radial-gradient(circle at center, #050505 28%, transparent 30%);
-  background-size: 4px 4px;
-  opacity: 0.6;
-  border-radius: 1px;
-}
-.mac-speakers-l { left: 3%; }
-.mac-speakers-r { right: 3%; }
-
-/* Teclado: grilla de teclas con dos gradientes superpuestos */
-.mac-keyboard {
-  position: absolute;
-  top: 14%;
-  left: 19%;
-  right: 19%;
-  height: 50%;
-  background:
-    /* separadores verticales (entre teclas) */
-    repeating-linear-gradient(90deg,
-      transparent 0px, transparent 9px,
-      rgba(0, 0, 0, 0.6) 9px, rgba(0, 0, 0, 0.6) 11px),
-    /* separadores horizontales (entre filas) */
-    repeating-linear-gradient(0deg,
-      transparent 0px, transparent 7px,
-      rgba(0, 0, 0, 0.5) 7px, rgba(0, 0, 0, 0.5) 9px),
-    /* relleno de las teclas */
-    linear-gradient(180deg, #28282c 0%, #1c1c20 100%);
-  border-radius: 2px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-/* Trackpad: rectángulo metálico bajo el teclado */
-.mac-trackpad {
-  position: absolute;
-  bottom: 12%;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 34%;
-  height: 22%;
-  background: linear-gradient(180deg, #2a2a2e 0%, #18181c 100%);
-  border-radius: 3px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
-    0 1px 2px rgba(0, 0, 0, 0.4);
+  width: 15%;
+  height: 42%;
+  background: radial-gradient(ellipse 130% 165% at 50% 0%,
+    rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 52%, transparent 74%);
+  border-radius: 0 0 80px 80px;
+  pointer-events: none;
 }
 
-/* Front edge — banda fina del chasis chamfered al frente */
+/* La base ahora es un canto de aluminio limpio (vista frontal real),
+   no un teclado plano + speakers que parecían barra de sonido. */
+.mac-keyboard,
+.mac-speakers,
+.mac-trackpad { display: none; }
+
+/* Front edge — labio biselado inferior del chasis (wedge) con rim de luz */
 .mac-deck-front {
   position: absolute;
   bottom: 0;
-  left: 6%;
-  right: 6%;
-  height: 4%;
+  left: 2.5%;
+  right: 2.5%;
+  height: 40%;
   background: linear-gradient(180deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.08) 45%,
-    transparent 100%);
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.08) 55%,
+    rgba(255, 255, 255, 0.16) 100%);
   border-radius: 0 0 12px 12px;
   pointer-events: none;
 }
